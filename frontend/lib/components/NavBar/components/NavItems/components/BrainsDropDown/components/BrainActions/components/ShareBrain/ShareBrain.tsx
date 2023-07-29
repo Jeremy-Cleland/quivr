@@ -5,12 +5,11 @@ import { UUID } from "crypto";
 import { ImUserPlus } from "react-icons/im";
 import { MdContentPaste, MdShare } from "react-icons/md";
 
+import { BrainUsers } from "@/lib/components/BrainUsers/BrainUsers";
+import { UserToInvite } from "@/lib/components/UserToInvite";
 import Button from "@/lib/components/ui/Button";
 import { Modal } from "@/lib/components/ui/Modal";
-
-import { BrainUsers } from "./components/BrainUsers/BrainUsers";
-import { UserToInvite } from "./components/UserToInvite";
-import { useShareBrain } from "./hooks/useShareBrain";
+import { useShareBrain } from "@/lib/hooks/useShareBrain";
 
 type ShareBrainModalProps = {
   brainId: UUID;
@@ -32,12 +31,8 @@ export const ShareBrain = ({
     sendingInvitation,
     setIsShareModalOpen,
     isShareModalOpen,
+    canAddNewRow,
   } = useShareBrain(brainId);
-
-  const canAddNewRow =
-    roleAssignations.length === 0 ||
-    roleAssignations.filter((invitingUser) => invitingUser.email === "")
-      .length === 0;
 
   return (
     <Modal
